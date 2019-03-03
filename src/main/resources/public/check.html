@@ -1,0 +1,150 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">今日打卡情况</h1>
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">日期
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{summaryInfo.date}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">统计人数
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{summaryInfo.totalUserCount}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">打卡人数</div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                        {{summaryInfo.checkedCount}}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="progress progress-sm mr-2">
+                                        <div class="progress-bar bg-info" role="progressbar"
+                                             ng-style="{width: summaryInfo.checkRatio}"
+                                             aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <!--<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>-->
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">打卡率
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{summaryInfo.checkRatio}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <!--<i class="fas fa-comments fa-2x text-gray-300"></i>-->
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <!--<h6 class="m-0 font-weight-bold text-primary">数据更新时间：{{}}}</h6>-->
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>用户名</th>
+                        <th>头像</th>
+                        <th>刷题数</th>
+                        <th>近一年打卡天数</th>
+                        <th>今日查卡</th>
+                        <th>数据更新时间</th>
+                    </tr>
+                    </thead>
+
+
+                    <!--</tr>-->
+                    <!--</tfoot>-->
+                    <tbody ng-repeat="user in users | orderBy:order:'desc'" ng-switch={{user.checked}}>
+                    <tr>
+
+                        <td>{{$index + 1}}</td>
+                        <td><a href="{{user.address}}">{{user.username}} </a></td>
+                        <td><a href="{{user.address}}"><img width="50px" src={{user.avatar}} style="border-radius: 50%"
+                                                            alt="user avatar"></a>
+                        </td>
+                        <td>{{user.solvedQuestion}}</td>
+
+                        <td>{{user.checkDaysInTheLastYear}}</td>
+                        <td ng-switch-when="0">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">已打卡</div>
+                        </td>
+                        <td ng-switch-when="1">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">缺卡</div>
+                        </td>
+                        <td>{{user.updateTime}}</td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
