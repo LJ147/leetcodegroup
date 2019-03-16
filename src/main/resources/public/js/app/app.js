@@ -1,6 +1,6 @@
 var app = angular
 
-    .module('myApp', ['ui.router', 'ui.bootstrap', 'ngAnimate'])
+    .module('myApp', ['ui.router', 'ui.bootstrap', 'ngAnimate' ])
 
     .controller('myCtrl', function ($scope, $http) {
     });
@@ -112,6 +112,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider,
             '': {
                 templateUrl: '404.html'
             }
+        }
+    }).state('charts', {
+        url: '/charts',
+        views: {
+            '': {
+                templateUrl: 'charts.html'
+            }
+
         }
     })
 

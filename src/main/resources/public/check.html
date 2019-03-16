@@ -1,7 +1,9 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">今日打卡情况</h1>
+    <h1 class="h3 mb-2 text-gray-800" style="text-align:center">一时打卡</h1>
+    <p class="mb-4">本项目现已开源，欢迎 star: <a target="_blank" href="https://github.com/LJ147/leetcodegroup">leetcodegroup</a>.
+    </p>
     <div class="row">
 
         <!-- Earnings (Monthly) Card Example -->
@@ -95,56 +97,61 @@
     </div>
 
 
-    <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <!--<h6 class="m-0 font-weight-bold text-primary">数据更新时间：{{}}}</h6>-->
+            <h6 class="m-0 font-weight-bold text-primary">今日打卡情况</h6>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>用户名</th>
-                        <th>头像</th>
-                        <th>刷题数</th>
-                        <th>近一年打卡天数</th>
-                        <th>今日查卡</th>
-                        <th>数据更新时间</th>
-                    </tr>
-                    </thead>
 
 
-                    <!--</tr>-->
-                    <!--</tfoot>-->
-                    <tbody ng-repeat="user in users | orderBy:order:'desc'" ng-switch={{user.checked}}>
-                    <tr>
+        <div class="table-responsive">
 
-                        <td>{{$index + 1}}</td>
-                        <td><a href="{{user.address}}">{{user.username}} </a></td>
-                        <td><a href="{{user.address}}"><img width="50px" src={{user.avatar}} style="border-radius: 50%"
-                                                            alt="user avatar"></a>
-                        </td>
-                        <td>{{user.solvedQuestion}}</td>
 
-                        <td>{{user.checkDaysInTheLastYear}}</td>
-                        <td ng-switch-when="0">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">已打卡</div>
-                        </td>
-                        <td ng-switch-when="1">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">缺卡</div>
-                        </td>
-                        <td>{{user.updateTime}}</td>
+            <table class="table table-bordered" id="dataTable"  width="100%" cellspacing="0">
+                <thead>
 
-                    </tr>
+                <th>序号</th>
+                <th>用户名</th>
+                <th>头像</th>
+                <th>刷题数</th>
+                <th>近一年打卡天数</th>
+                <th>今日查卡</th>
+                <th>数据更新时间</th>
+                </tr>
+                </thead>
 
-                    </tbody>
-                </table>
-            </div>
+
+                </tr>
+                </tfoot>
+                <tbody ng-repeat="user in users | orderBy:order:'desc'" ng-switch={{user.checked}}>
+                <tr>
+
+                    <td>{{$index + 1}}</td>
+                    <td><a href="{{user.address}}">{{user.username}} </a></td>
+                    <td><a href="{{user.address}}"><img width="50px" src={{user.avatar}} style="border-radius: 50%"
+                                                        alt="user avatar"></a>
+                    </td>
+                    <td>{{user.solvedQuestion}}</td>
+
+                    <td>{{user.checkDaysInTheLastYear}}</td>
+                    <td ng-switch-when="0">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">已打卡</div>
+                    </td>
+                    <td ng-switch-when="1">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">缺卡</div>
+                    </td>
+                    <td>{{user.updateTime}}</td>
+
+                </tr>
+
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
+
+<script src="vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 </div>
 <!-- /.container-fluid -->
 

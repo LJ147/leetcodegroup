@@ -13,35 +13,45 @@ function LoginCtrl($scope, $http, $state) {
 
 }
 
-function CheckDayInfoCtrl($scope, $http, $state) {
-    $scope.users = null;
+function CheckDayInfoCtrl($scope, $http, $state, $filter) {
     $scope.summaryInfo = null;
+    $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
 
-    var getCheckDayInfo = function () {
-        $http({
-            url: 'checkDayInfo/day',
-            method: 'get',
-            // params: {date:"2019-03-01"}
-        }).success(function (response) {
-            $scope.users = response
-            $scope.order = "solvedQuestion"
 
-        })
-    };
+
+    $http({
+        url: 'checkDayInfo/day',
+        method: 'get',
+        params: {date: $scope.today}
+    }).success(function (response) {
+            if (response.length > 0) {
+                $scope.users = response;
+                $scope.order = "solvedQuestion";
+
+            } else {
+                alert("所选日期暂无数据！")
+            }
+        }
+    );
+
 
     var getSummaryInfo = function () {
         $http({
             url: 'checkDayInfo/summary',
             method: 'get',
-            // params: {date:"2019-03-01"}
+            params: {date: $scope.today}
         }).success(function (response) {
-            $scope.summaryInfo = response
+
+            if (response != null) {
+                $scope.summaryInfo = response
+
+            }
         })
     };
 
-
-    getCheckDayInfo();
     getSummaryInfo();
+
+
 }
 
 
