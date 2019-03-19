@@ -1,6 +1,6 @@
 var app = angular
 
-    .module('myApp', ['ui.router', 'ui.bootstrap', 'ngAnimate' ])
+    .module('myApp', ['ui.router', 'ui.bootstrap', 'ngAnimate'])
 
     .controller('myCtrl', function ($scope, $http) {
     });
@@ -118,6 +118,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider,
         views: {
             '': {
                 templateUrl: 'charts.html'
+            }
+
+        }
+    }).state('submit', {
+        url: '/submit',
+        views: {
+            '': {
+                templateUrl: 'submit.html',
+                controller: SubmitCtrl
             }
 
         }

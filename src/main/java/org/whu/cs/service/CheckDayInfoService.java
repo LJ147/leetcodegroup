@@ -17,8 +17,6 @@ public class CheckDayInfoService {
 
     }
 
-
-
     public CheckDayInfo create(CheckDayInfo checkDayInfo) {
         return checkDayInfoRepository.save(checkDayInfo);
     }

@@ -18,7 +18,6 @@ function CheckDayInfoCtrl($scope, $http, $state, $filter) {
     $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
 
 
-
     $http({
         url: 'checkDayInfo/day',
         method: 'get',
@@ -26,7 +25,6 @@ function CheckDayInfoCtrl($scope, $http, $state, $filter) {
     }).success(function (response) {
             if (response.length > 0) {
                 $scope.users = response;
-                $scope.order = "solvedQuestion";
 
             } else {
                 alert("所选日期暂无数据！")
@@ -57,4 +55,17 @@ function CheckDayInfoCtrl($scope, $http, $state, $filter) {
 
 function IndexCtrl($scope, $http, $state) {
 
+}
+
+function SubmitCtrl($scope, $http, $state) {
+    $scope.message = null;
+    $scope.submitUrl = function () {
+        $http({
+            url: '/api/member/create',
+            method: 'post',
+            params: {url: $scope.url}
+        }).success(function (response) {
+          alert(response)
+        })
+    };
 }
