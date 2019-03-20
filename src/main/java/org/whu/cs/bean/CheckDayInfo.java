@@ -37,6 +37,9 @@ public class CheckDayInfo {
     private int solvedQuestion;
     private int acceptedSubmission;
 
+    @Column(columnDefinition="int default 0")
+    private int upvoteNumber=0;
+
 
     public String getAddress() {
         return address;
@@ -166,5 +169,13 @@ public class CheckDayInfo {
                 ", checkDaysInTheLastYear=" + checkDaysInTheLastYear +
                 ", checked='" + checked + '\'' +
                 '}';
+    }
+
+    public int getUpvoteNumber() {
+        return upvoteNumber;
+    }
+
+    public void setUpvoteNumber(int upvoteNumber) {
+        this.upvoteNumber = upvoteNumber;
     }
 }
