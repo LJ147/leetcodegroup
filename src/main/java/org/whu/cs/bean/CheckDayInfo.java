@@ -23,92 +23,19 @@ public class CheckDayInfo {
     // 个人主页
     private String website;
     // 提交通过率
-    private int acceptanceRate;
+    private Integer acceptanceRate;
     // 查卡天数 格式 '2019-03-01'
     private String date;
-    private int checkDaysInTheLastYear;
+    private Integer checkDaysInTheLastYear;
     // 是否打卡 0：已打卡 1： 未打卡
-    private int checked;
+    private Integer checked;
     private String updateTime;
-    private int solvedProblemNumberOfToday;
-    private int submissionOfToday;
-    private int submissionCount;
+    private Integer solvedProblemNumberOfToday;
+    private Integer submissionOfToday;
+    private Integer submissionCount;
     // 刷过的题
-    private int solvedQuestion;
-    private int acceptedSubmission;
-
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
-    public int getAcceptanceRate() {
-        return acceptanceRate;
-    }
-
-    public void setAcceptanceRate(int acceptanceRate) {
-        this.acceptanceRate = acceptanceRate;
-    }
-
-    public int getAcceptedSubmission() {
-        return acceptedSubmission;
-    }
-
-    public void setAcceptedSubmission(int acceptedSubmission) {
-        this.acceptedSubmission = acceptedSubmission;
-    }
-
-    public int getSolvedQuestion() {
-        return solvedQuestion;
-    }
-
-    public void setSolvedQuestion(int solvedQuestion) {
-        this.solvedQuestion = solvedQuestion;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public int getSubmissionCount() {
-        return submissionCount;
-    }
-
-    public void setSubmissionCount(int submissionCount) {
-        this.submissionCount = submissionCount;
-    }
-
-    public int getSolvedProblemNumberOfToday() {
-        return solvedProblemNumberOfToday;
-    }
-
-    public void setSolvedProblemNumberOfToday(int solvedProblemNumberOfToday) {
-        this.solvedProblemNumberOfToday = solvedProblemNumberOfToday;
-    }
-
-    public int getSubmissionOfToday() {
-        return submissionOfToday;
-    }
-
-    public void setSubmissionOfToday(int submissionOfToday) {
-        this.submissionOfToday = submissionOfToday;
-    }
+    private Integer solvedQuestion;
+    private Integer acceptedSubmission;
 
     public Long getInfoId() {
         return infoId;
@@ -116,6 +43,14 @@ public class CheckDayInfo {
 
     public void setInfoId(Long infoId) {
         this.infoId = infoId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getUsername() {
@@ -126,6 +61,30 @@ public class CheckDayInfo {
         this.username = username;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public Integer getAcceptanceRate() {
+        return acceptanceRate;
+    }
+
+    public void setAcceptanceRate(Integer acceptanceRate) {
+        this.acceptanceRate = acceptanceRate;
+    }
+
     public String getDate() {
         return date;
     }
@@ -134,19 +93,19 @@ public class CheckDayInfo {
         this.date = date;
     }
 
-    public int getCheckDaysInTheLastYear() {
+    public Integer getCheckDaysInTheLastYear() {
         return checkDaysInTheLastYear;
     }
 
-    public void setCheckDaysInTheLastYear(int checkDaysInTheLastYear) {
+    public void setCheckDaysInTheLastYear(Integer checkDaysInTheLastYear) {
         this.checkDaysInTheLastYear = checkDaysInTheLastYear;
     }
 
-    public int getChecked() {
+    public Integer getChecked() {
         return checked;
     }
 
-    public void setChecked(int checked) {
+    public void setChecked(Integer checked) {
         this.checked = checked;
     }
 
@@ -156,6 +115,46 @@ public class CheckDayInfo {
 
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getSolvedProblemNumberOfToday() {
+        return solvedProblemNumberOfToday;
+    }
+
+    public void setSolvedProblemNumberOfToday(Integer solvedProblemNumberOfToday) {
+        this.solvedProblemNumberOfToday = solvedProblemNumberOfToday;
+    }
+
+    public Integer getSubmissionOfToday() {
+        return submissionOfToday;
+    }
+
+    public void setSubmissionOfToday(Integer submissionOfToday) {
+        this.submissionOfToday = submissionOfToday;
+    }
+
+    public Integer getSubmissionCount() {
+        return submissionCount;
+    }
+
+    public void setSubmissionCount(Integer submissionCount) {
+        this.submissionCount = submissionCount;
+    }
+
+    public Integer getSolvedQuestion() {
+        return solvedQuestion;
+    }
+
+    public void setSolvedQuestion(Integer solvedQuestion) {
+        this.solvedQuestion = solvedQuestion;
+    }
+
+    public Integer getAcceptedSubmission() {
+        return acceptedSubmission;
+    }
+
+    public void setAcceptedSubmission(Integer acceptedSubmission) {
+        this.acceptedSubmission = acceptedSubmission;
     }
 
     @Override

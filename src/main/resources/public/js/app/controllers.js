@@ -41,7 +41,7 @@ function CheckDayInfoCtrl($scope, $http, $state, $filter) {
         }).success(function (response) {
 
             if (response != null) {
-                $scope.summaryInfo = response
+                $scope.summaryInfo = response;
 
             }
         })
@@ -50,12 +50,20 @@ function CheckDayInfoCtrl($scope, $http, $state, $filter) {
     getSummaryInfo();
 
 
+
+
+
 }
 
 
 function IndexCtrl($scope, $http, $state) {
 
 }
+
+function UpdateRecordCtrl($scope, $http, $state) {
+
+}
+
 
 function SubmitCtrl($scope, $http, $state) {
     $scope.message = null;

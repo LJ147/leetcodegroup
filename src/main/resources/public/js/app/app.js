@@ -130,6 +130,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider,
             }
 
         }
+    }).state('updateRecord', {
+        url: '/updateRecord',
+        views: {
+            '': {
+                templateUrl: 'pages/updateRecord.html',
+                controller: UpdateRecordCtrl
+            }
+
+        }
     })
 
 });

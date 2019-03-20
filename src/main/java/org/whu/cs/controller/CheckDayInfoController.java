@@ -29,7 +29,7 @@ public class CheckDayInfoController {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
             date = df.format(new Date());
         }
-        List<CheckDayInfo>checkDayInfos = checkDayInfoService.checkDayInfos(date);
+        List<CheckDayInfo> checkDayInfos = checkDayInfoService.checkDayInfos(date);
         return checkDayInfos;
     }
 
@@ -54,7 +54,8 @@ public class CheckDayInfoController {
         summary.put("date", date);
         Integer totalUserCount = checkDayInfoService.getTotalUserCount(date);
         Integer checkedCount = checkDayInfoService.getCheckedCount(date);
-        double ratio = (double) checkedCount / totalUserCount;
+
+        double ratio = totalUserCount == 0 ? 0 : (double) checkedCount / totalUserCount;
 
         NumberFormat format = NumberFormat.getPercentInstance();
         format.setMaximumFractionDigits(1);//设置保留几位小数
