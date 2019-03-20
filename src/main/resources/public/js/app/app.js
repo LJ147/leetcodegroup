@@ -94,7 +94,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider,
         url: '/check',
         views: {
             '': {
-                templateUrl: 'check.html',
+                templateUrl: 'pages/check.html',
                 controller: CheckDayInfoCtrl
             }
 
@@ -125,7 +125,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider,
         url: '/submit',
         views: {
             '': {
-                templateUrl: 'submit.html',
+                templateUrl: 'pages/submit.html',
                 controller: SubmitCtrl
             }
 
@@ -136,6 +136,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider,
             '': {
                 templateUrl: 'pages/updateRecord.html',
                 controller: UpdateRecordCtrl
+            }
+
+        }
+    }).state('wechatApp', {
+        url: '/wechatApp',
+        views: {
+            '': {
+                templateUrl: 'pages/wechatApp.html',
+                controller: WechatAppCtrl
             }
 
         }

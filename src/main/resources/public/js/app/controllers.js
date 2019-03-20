@@ -48,11 +48,6 @@ function CheckDayInfoCtrl($scope, $http, $state, $filter) {
     };
 
     getSummaryInfo();
-
-
-
-
-
 }
 
 
@@ -61,6 +56,9 @@ function IndexCtrl($scope, $http, $state) {
 }
 
 function UpdateRecordCtrl($scope, $http, $state) {
+
+}
+function WechatAppCtrl($scope, $http, $state) {
 
 }
 
