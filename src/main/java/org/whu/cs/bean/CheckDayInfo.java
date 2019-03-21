@@ -44,6 +44,9 @@ public class CheckDayInfo {
     public void setInfoId(Long infoId) {
         this.infoId = infoId;
     }
+    @Column(columnDefinition="int default 0")
+    private int upvoteNumber=0;
+
 
     public String getAddress() {
         return address;
@@ -94,7 +97,7 @@ public class CheckDayInfo {
     }
 
     public Integer getCheckDaysInTheLastYear() {
-        return checkDaysInTheLastYear;
+        return checkDaysInTheLastYear   ;
     }
 
     public void setCheckDaysInTheLastYear(Integer checkDaysInTheLastYear) {
@@ -165,5 +168,13 @@ public class CheckDayInfo {
                 ", checkDaysInTheLastYear=" + checkDaysInTheLastYear +
                 ", checked='" + checked + '\'' +
                 '}';
+    }
+
+    public int getUpvoteNumber() {
+        return upvoteNumber;
+    }
+
+    public void setUpvoteNumber(int upvoteNumber) {
+        this.upvoteNumber = upvoteNumber;
     }
 }
