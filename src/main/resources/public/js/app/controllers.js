@@ -48,6 +48,19 @@ function CheckDayInfoCtrl($scope, $http, $state, $filter) {
     };
 
     getSummaryInfo();
+
+    // 点赞
+    $scope.upvote = function (toMemberId, upvoteNumber, index) {
+        $http({
+            url: '/api/upvote/webVote',
+            method: 'post',
+            params: {'fromMemberId': -1, 'toMemberId': toMemberId}
+        }).success(function (response) {
+            console.log("upvote: " + toMemberId);
+        })
+    };
+
+
 }
 
 
@@ -58,6 +71,7 @@ function IndexCtrl($scope, $http, $state) {
 function UpdateRecordCtrl($scope, $http, $state) {
 
 }
+
 function WechatAppCtrl($scope, $http, $state) {
 
 }
@@ -71,7 +85,11 @@ function SubmitCtrl($scope, $http, $state) {
             method: 'post',
             params: {url: $scope.url}
         }).success(function (response) {
-          alert(response)
+            alert(response)
         })
     };
+}
+
+function AddUpvoteCount(index) {
+    $("#upvote_" + index).text(upvoteNumber + 1);
 }

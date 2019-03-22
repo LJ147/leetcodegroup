@@ -99,19 +99,18 @@
         </div>
 
 
-
         <div class="table-responsive">
 
 
-            <table class="table table-bordered" id="dataTable"  width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
 
                 <th>序号</th>
                 <th>用户名</th>
                 <th>头像</th>
                 <th>刷题数</th>
-                <th>近一年打卡天数</th>
                 <th>今日查卡</th>
+                <th>点赞</th>
                 <th>数据更新时间</th>
                 </tr>
                 </thead>
@@ -129,13 +128,22 @@
                     </td>
                     <td>{{user.solvedQuestion}}</td>
 
-                    <td>{{user.checkDaysInTheLastYear}}</td>
                     <td ng-switch-when="0">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">已打卡</div>
                     </td>
                     <td ng-switch-when="1">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">缺卡</div>
                     </td>
+
+                    <td ng-init="upvoteNumber = user.upvoteNumber"
+                        ng-click="upvoteNumber = upvoteNumber+ 1;upvote(user.username, upvoteNumber,$index) "
+                    >
+                        <i class="fas fa-thumbs-up"></i>
+                        <span id="upvote_{{$index}}">
+                            {{upvoteNumber}}
+                        </span>
+                    </td>
+
                     <td>{{user.updateTime}}</td>
 
                 </tr>
@@ -148,8 +156,6 @@
     </div>
 
 </div>
-
-
 
 
 <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
