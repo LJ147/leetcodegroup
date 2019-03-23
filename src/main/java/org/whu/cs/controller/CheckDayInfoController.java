@@ -66,4 +66,5 @@ public class CheckDayInfoController {
 
         return summary;
     }
+
 }
