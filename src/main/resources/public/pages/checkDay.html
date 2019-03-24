@@ -1,4 +1,13 @@
-<!-- Begin Page Content -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!-- Begin Page Content -->
 <div class="container-fluid">
     <div class="row">
 
@@ -93,64 +102,18 @@
     </div>
 
 
+
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">今日打卡情况</h6>
+            <h6 class="m-0 font-weight-bold text-right">数据更新时间：{{users[0].updateTime}}</h6>
         </div>
 
 
         <div class="table-responsive">
 
 
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-
-                <th>序号</th>
-                <th>用户名</th>
-                <th>头像</th>
-                <th>刷题数</th>
-
-                <th>今日查卡</th>
-                <th>点赞</th>
-                <th>数据更新时间</th>
-                </tr>
-                </thead>
-
-
-                </tr>
-                </tfoot>
-                <tbody ng-repeat="user in users " ng-switch={{user.checked}}>
-                <tr>
-
-                    <td>{{$index + 1}}</td>
-                    <td><a href="{{user.address}}">{{user.username}} </a></td>
-                    <td><a href="{{user.address}}"><img width="50px" src={{user.avatar}} style="border-radius: 50%"
-                                                        alt="user avatar"></a>
-                    </td>
-                    <td>{{user.solvedQuestion}}</td>
-
-                    <td ng-switch-when="0">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">已打卡</div>
-                    </td>
-                    <td ng-switch-when="1">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">缺卡</div>
-                    </td>
-
-                    <td ng-init="upvoteNumber = user.upvoteNumber"
-                        ng-click="upvoteNumber = upvoteNumber+ 1;upvote(user.username, upvoteNumber,$index) "
-                    >
-                        <i class="fas fa-thumbs-up"></i>
-                        <span id="upvote_{{$index}}">
-                            {{upvoteNumber}}
-                        </span>
-                    </td>
-
-                    <td>{{user.updateTime}}</td>
-
-                </tr>
-
-                </tbody>
-            </table>
+            <div ui-if="gridOptions.data.length>0"  id="user-grid" ui-grid="gridOptions" class="grid" ui-grid-pagination ui-grid-auto-resize ng-style="getTableHeight()"></div>
 
 
         </div>
@@ -163,3 +126,4 @@
 <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 </div>
 <!-- /.container-fluid -->
+

@@ -1,6 +1,7 @@
 var app = angular
 
-    .module('myApp', ['ui.router', 'ui.bootstrap', 'ngAnimate'])
+    .module('myApp', ['ui.router', 'ui.bootstrap', 'ngAnimate','ui.grid',
+        'ui.grid.pagination', 'ui.grid.resizeColumns', 'ui.grid.autoResize'])
 
     .controller('myCtrl', function ($scope, $http) {
     });
@@ -95,6 +96,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider,
         views: {
             '': {
                 templateUrl: 'pages/check.html',
+                controller: CheckDayInfoCtrl
+            }
+
+        }
+    }).state('checkDay', {
+        url: '/checkDay',
+        views: {
+            '': {
+                templateUrl: 'pages/checkDay.html',
                 controller: CheckDayInfoCtrl
             }
 

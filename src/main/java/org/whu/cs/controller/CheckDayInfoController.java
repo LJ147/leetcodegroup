@@ -1,11 +1,11 @@
 package org.whu.cs.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
 import org.whu.cs.bean.CheckDayInfo;
 import org.whu.cs.service.CheckDayInfoService;
 
@@ -24,13 +24,16 @@ public class CheckDayInfoController {
 
     @GetMapping(value = "/day")
     @ResponseBody
-    public List<CheckDayInfo> checkDayInfos(String date) {
+    public Page<CheckDayInfo> checkDayInfos(
+            @RequestParam(value="page")Integer page,
+            @RequestParam(value="pageSize")Integer pageSize ,
+            @RequestParam(value="date") String date) {
         if (date == null) {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
             date = df.format(new Date());
         }
-        List<CheckDayInfo> checkDayInfos = checkDayInfoService.checkDayInfos(date);
-        return checkDayInfos;
+        Pageable pageable=new PageRequest(page,pageSize);
+        return checkDayInfoService.checkDayInfos(date,pageable);
     }
 
 

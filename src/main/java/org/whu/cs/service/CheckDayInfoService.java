@@ -1,6 +1,8 @@
 package org.whu.cs.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.whu.cs.bean.CheckDayInfo;
 import org.whu.cs.repository.CheckDayInfoRepository;
@@ -12,8 +14,8 @@ public class CheckDayInfoService {
     @Autowired
     private CheckDayInfoRepository checkDayInfoRepository;
 
-    public List<CheckDayInfo> checkDayInfos(String date) {
-        return checkDayInfoRepository.findByDate(date);
+    public Page<CheckDayInfo> checkDayInfos(String date,Pageable pageable) {
+        return checkDayInfoRepository.findByDate(date,pageable);
 
     }
 
