@@ -13,7 +13,10 @@ public interface CheckDayInfoRepository extends JpaRepository<CheckDayInfo, Long
     List<CheckDayInfo> findAllByDate(String date);
 
     @Query(value = "select * from CheckDayInfo info where info.date = ?1 ORDER by checked ASC, solvedQuestion DESC ", nativeQuery = true)
-    Page<CheckDayInfo> findByDate(String date,Pageable pageable);
+    Page<CheckDayInfo> findAllByDate(String date,Pageable pageable);
+
+    @Query(value = "select * from CheckDayInfo info where info.date = ?1 ORDER by checked ASC, solvedQuestion DESC ", nativeQuery = true)
+    List<CheckDayInfo> findByDate(String date);
 
     Integer countAllByDate(String date);
 

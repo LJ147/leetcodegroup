@@ -24,16 +24,28 @@ public class CheckDayInfoController {
 
     @GetMapping(value = "/day")
     @ResponseBody
-    public Page<CheckDayInfo> checkDayInfos(
-            @RequestParam(value="page")Integer page,
-            @RequestParam(value="pageSize")Integer pageSize ,
-            @RequestParam(value="date") String date) {
+    public List<CheckDayInfo> checkDayInfos(
+
+            @RequestParam(value = "date") String date) {
         if (date == null) {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
             date = df.format(new Date());
         }
-        Pageable pageable=new PageRequest(page,pageSize);
-        return checkDayInfoService.checkDayInfos(date,pageable);
+        return checkDayInfoService.checkDayInfos(date);
+    }
+
+    @GetMapping(value = "/info")
+    @ResponseBody
+    public Page<CheckDayInfo> checkDayInfoPage(
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "pageSize") Integer pageSize,
+            @RequestParam(value = "date") String date) {
+        if (date == null) {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+            date = df.format(new Date());
+        }
+        Pageable pageable = new PageRequest(page, pageSize);
+        return checkDayInfoService.checkDayInfoPage(date, pageable);
     }
 
 

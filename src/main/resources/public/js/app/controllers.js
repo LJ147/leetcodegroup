@@ -13,14 +13,45 @@ function LoginCtrl($scope, $http, $state) {
 
 }
 
+function CheckCtrl($scope, $http, $state,$filter) {
+    $scope.summaryInfo = null;
+    $scope.users = null;
+
+    $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
+
+    $http({
+        url: 'checkDayInfo/day',
+        method: 'get',
+        params: {date: $scope.today}
+    }).success(function (response) {
+            if (response.length > 0) {
+                $scope.users = response;
+            } else {
+                alert("所选日期暂无数据！")
+            }
+        }
+    );
+
+    $http({
+        url: 'checkDayInfo/summary',
+        method: 'get',
+        params: {date: $scope.today}
+    }).success(function (response) {
+
+        if (response != null) {
+            $scope.summaryInfo = response;
+
+        }
+    })
+
+
+}
+
+
 function CheckDayInfoCtrl($scope, $http, $state, $filter) {
     $scope.summaryInfo = null;
     $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
-    $scope.index=0;
-
-
-
-
+    $scope.index = 0;
 
     var paginationOptions = {
         pageNumber: 1,
@@ -28,61 +59,61 @@ function CheckDayInfoCtrl($scope, $http, $state, $filter) {
     };
 
     $scope.gridOptions = {
-        paginationPageSizes: [ 10, 50, 100],
+        paginationPageSizes: [10, 50, 100],
         paginationPageSize: 10,
         enableHorizontalScrollbar: 0, // grid水平滚动条是否显示, 0-不显示 1-显示
         enableVerticalScrollbar: 0, // grid垂直滚动条是否显示, 0-不显示 1-显示
         useExternalPagination: true, // 是否使用分页按钮
         useExternalSorting: false, // 是否使用自定义排序规则
-        rowHeight:60,
-        headerHeight:60,
-        headerClass:'text-center',
+        rowHeight: 60,
+        headerHeight: 60,
+        headerClass: 'text-center',
         columnDefs: [{
             name: '序号',
-            cellTemplate:'<div class="ui-grid-cell-contents" style="width: 100%; height: 500px; text-align: center;">{{grid.renderContainers.body.visibleRowCache.indexOf(row)+(grid.options.paginationPageSize*(grid.options.paginationCurrentPage-1))+1}}</div>\'',
+            cellTemplate: '<div class="ui-grid-cell-contents" style="width: 100%; height: 500px; text-align: center;">{{grid.renderContainers.body.visibleRowCache.indexOf(row)+(grid.options.paginationPageSize*(grid.options.paginationCurrentPage-1))+1}}</div>\'',
             width: '10%',
             enableSorting: false,
-            enableColumnMenu:false
+            enableColumnMenu: false
         }, {
             name: '用户名',
             displayName: '用户名',
-            cellTemplate:'<div style="width: 100%; height: 500px; text-align: center;"><a href="row.entity.address"> {{row.entity.username}}</a></div>',
+            cellTemplate: '<div style="width: 100%; height: 500px; text-align: center;"><a href="row.entity.address"> {{row.entity.username}}</a></div>',
             width: '20%',
             enableSorting: false,
-            enableColumnMenu:false
+            enableColumnMenu: false
         }, {
             name: '头像',
             displayName: '头像',
-            cellTemplate:'<div style="width: 100%; height: 500px; text-align: center;"><a href="row.entity.address"><img width="50px" src= {{row.entity.avatar}} style="border-radius: 50%"\n' +
+            cellTemplate: '<div style="width: 100%; height: 500px; text-align: center;"><a href="row.entity.address"><img width="50px" src= {{row.entity.avatar}} style="border-radius: 50%"\n' +
                 '                                                        alt="user avatar"></a></div>',
             width: '20%',
             enableSorting: false,
-            enableColumnMenu:false
+            enableColumnMenu: false
         }, {
             name: '刷题数',
             displayName: '刷题数',
             field: 'solvedQuestion',
-            type:'number',
-            cellClass:'text-center',
+            type: 'number',
+            cellClass: 'text-center',
             width: '10%'
 
         }, {
             name: '今日查卡',
             displayName: '今日查卡',
             cellTemplate:
-                '<div style="width: 100%; height: 500px; text-align: center;" class="text-xs font-weight-bold text-success text-uppercase mb-1" ng-hide="row.entity.checked==1">已打卡</div>'+
+                '<div style="width: 100%; height: 500px; text-align: center;" class="text-xs font-weight-bold text-success text-uppercase mb-1" ng-hide="row.entity.checked==1">已打卡</div>' +
                 '<div style="width: 100%; height: 500px; text-align: center;" class="text-xs font-weight-bold text-warning text-uppercase mb-1" ng-hide="row.entity.checked==0">缺卡</div>',
             width: '20%',
             enableSorting: false,
-            enableColumnMenu:false
+            enableColumnMenu: false
         }, {
             name: '点赞',
             displayName: '点赞',
             width: '20%',
             enableSorting: true,
-            type:'number',
+            type: 'number',
             enableSorting: false,
-            enableColumnMenu:false,
+            enableColumnMenu: false,
             cellTemplate:
                 '<div style="width: 100%; height: 500px; text-align: center;"><a ng-init="upvoteNumber = row.entity.upvoteNumber" ng-click="upvoteNumber = upvoteNumber+ 1;grid.appScope.upvote(row.entity.username) "><i class="fas fa-thumbs-up"></i><span>{{upvoteNumber}}</span></a></div>'
         }],
@@ -116,13 +147,13 @@ function CheckDayInfoCtrl($scope, $http, $state, $filter) {
         var rowHeight = 60; // your row height
         var headerHeight = 60; // your header height
         return {
-            height: ($scope.gridOptions.data.length * rowHeight + headerHeight+2) + "px"
+            height: ($scope.gridOptions.data.length * rowHeight + headerHeight + 2) + "px"
         };
     };
     var getPage = function () {
         // 获取当前页数
         var page = paginationOptions.pageNumber - 1;
-        $http.get("checkDayInfo/day?page=" + page + "&pageSize=" + paginationOptions.pageSize +
+        $http.get("checkDayInfo/info?page=" + page + "&pageSize=" + paginationOptions.pageSize +
             "&date=" + $scope.today).success(function (response) {
             if (response.totalElements > 0) {
                 $scope.gridOptions.totalItems = response.totalElements;
@@ -155,6 +186,7 @@ function CheckDayInfoCtrl($scope, $http, $state, $filter) {
 
     // 点赞
     $scope.upvote = function (toMemberId) {
+
         $http({
             url: '/api/upvote/webVote',
             method: 'post',

@@ -49,6 +49,45 @@
         <!--gtag('config', 'UA-96527706-3');-->
     <!--</script>-->
 
+    <style>
+        .HeartAnimation {
+            /*position: center;*/
+            background-image: url(pages/web_heart_animation_edge.png);
+            /*background-position: left;*/
+            /*background-repeat: no-repeat;*/
+            /*background-size: 2900%;*/
+            height: 30px;
+            width: 100px;
+            left: 50%;
+            top: 50%;
+            -ms-transform: translate(-50%, -47.5%);
+            transform: translate(-50%, -47.5%)
+        }
+
+        .like_active {
+            animation-timing-function: steps(28);
+            animation-name: heart-burst;
+            animation-duration: .8s;
+            animation-iteration-count: 1;
+            display: inline-block;
+            animation-fill-mode: forwards;
+
+        }
+
+        /*.HeartAnimation :hover {*/
+        /*background-position: 3.571428571428571%*/
+        /*}*/
+
+        @keyframes heart-burst {
+            0% {
+                background-position: left
+            }
+
+            100% {
+                background-position: right
+            }
+        }
+    </style>
 
 </head>
 
@@ -95,29 +134,15 @@
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">敬请期待</h6>
-                    <!--<a class="collapse-item" ui-sref="buttons">刷题榜单</a>-->
+                    <h6 class="collapse-header">排行榜</h6>
+                    <a class="collapse-item" ui-sref="checkDay">每日打卡</a>
                     <!--<a class="collapse-item" ui-sref="cards">打卡总榜单</a>-->
                     <!--<a class="collapse-item" ui-sref="cards">连续打卡榜单</a>-->
                 </div>
             </div>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" ui-sref="checkDay" data-toggle="collapse" data-target="#collapseThree"
-               aria-expanded="true" aria-controls="collapseThree">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>每日打卡</span>
-            </a>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">敬请期待</h6>
-                    <!--<a class="collapse-item" ui-sref="buttons">刷题榜单</a>-->
-                    <!--<a class="collapse-item" ui-sref="cards">打卡总榜单</a>-->
-                    <!--<a class="collapse-item" ui-sref="cards">连续打卡榜单</a>-->
-                </div>
-            </div>
-        </li>
+
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -440,7 +465,15 @@
                 <div class="copyright text-center my-auto">
                     <span>Copyright &copy; 一时打卡 2019</span>
                 </div>
+
+                <div class="copyright text-center my-auto">
+                    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                    <span id="busuanzi_container_site_pv">总访问量：<span id="busuanzi_value_site_pv"></span>次</span>                </div>
+
+
             </div>
+
+
         </footer>
         <!-- End of Footer -->
 

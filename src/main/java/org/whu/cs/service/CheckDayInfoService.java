@@ -14,8 +14,12 @@ public class CheckDayInfoService {
     @Autowired
     private CheckDayInfoRepository checkDayInfoRepository;
 
-    public Page<CheckDayInfo> checkDayInfos(String date,Pageable pageable) {
-        return checkDayInfoRepository.findByDate(date,pageable);
+    public Page<CheckDayInfo> checkDayInfoPage(String date,Pageable pageable) {
+        return checkDayInfoRepository.findAllByDate(date,pageable);
+
+    }
+    public List<CheckDayInfo> checkDayInfos(String date) {
+        return checkDayInfoRepository.findByDate(date);
 
     }
 

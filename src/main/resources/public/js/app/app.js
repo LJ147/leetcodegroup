@@ -96,7 +96,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider,
         views: {
             '': {
                 templateUrl: 'pages/check.html',
-                controller: CheckDayInfoCtrl
+                controller: CheckCtrl
             }
 
         }

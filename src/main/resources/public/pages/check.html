@@ -1,4 +1,3 @@
-<!-- Begin Page Content -->
 <div class="container-fluid">
     <div class="row">
 
@@ -95,7 +94,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">今日打卡情况</h6>
+            <h6 class="m-0 font-weight-bold text-primary">数据更新时间：{{users[0].updateTime}}</h6>
         </div>
 
 
@@ -109,17 +108,16 @@
                 <th>用户名</th>
                 <th>头像</th>
                 <th>刷题数</th>
-
+                <th>打卡天数</th>
                 <th>今日查卡</th>
                 <th>点赞</th>
-                <th>数据更新时间</th>
                 </tr>
                 </thead>
 
 
                 </tr>
                 </tfoot>
-                <tbody ng-repeat="user in users " ng-switch={{user.checked}}>
+                <tbody ng-repeat="user in users " ng-switch={{user.checked}} >
                 <tr>
 
                     <td>{{$index + 1}}</td>
@@ -128,6 +126,8 @@
                                                         alt="user avatar"></a>
                     </td>
                     <td>{{user.solvedQuestion}}</td>
+                    <td>{{user.checkDaysInTheLastYear}}</td>
+
 
                     <td ng-switch-when="0">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">已打卡</div>
@@ -136,16 +136,24 @@
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">缺卡</div>
                     </td>
 
+                    <!--<td>-->
+                        <!--<div ng-class="{HeartAnimation:true, 'like_active':liked }"-->
+                             <!--ng-init="upvoteNumber = user.upvoteNumber; liked = false"-->
+                             <!--ng-click="liked = !liked; upvote(user.username, upvoteNumber,$index)"></div>-->
+
+
+                        <!--{{upvoteNumber}}-->
+                    <!--</td>-->
+
                     <td ng-init="upvoteNumber = user.upvoteNumber"
-                        ng-click="upvoteNumber = upvoteNumber+ 1;upvote(user.username, upvoteNumber,$index) "
+                    ng-click="upvoteNumber = upvoteNumber+ 1;upvote(user.username, upvoteNumber,$index) "
                     >
-                        <i class="fas fa-thumbs-up"></i>
-                        <span id="upvote_{{$index}}">
-                            {{upvoteNumber}}
-                        </span>
+                    <i class="fas fa-thumbs-up"></i>
+                    <span id="upvote_{{$index}}">
+                    {{upvoteNumber}}
+                    </span>
                     </td>
 
-                    <td>{{user.updateTime}}</td>
 
                 </tr>
 
@@ -161,5 +169,11 @@
 
 <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
-</div>
-<!-- /.container-fluid -->
+
+
+<!--<script>-->
+<!--$('.HeartAnimation').click(function () {-->
+<!--var _this = $(this)-->
+<!--_this.hasClass('like-active') ? _this.removeClass('like-active') : _this.addClass('like-active')-->
+<!--})-->
+<!--</script>-->
