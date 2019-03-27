@@ -110,12 +110,11 @@ function CheckDayInfoCtrl($scope, $http, $state, $filter) {
             name: '点赞',
             displayName: '点赞',
             width: '20%',
-            enableSorting: true,
-            type: 'number',
             enableSorting: false,
+            type: 'number',
             enableColumnMenu: false,
             cellTemplate:
-                '<div style="width: 100%; height: 500px; text-align: center;"><a ng-init="upvoteNumber = row.entity.upvoteNumber" ng-click="upvoteNumber = upvoteNumber+ 1;grid.appScope.upvote(row.entity.username) "><i class="fas fa-thumbs-up"></i><span>{{upvoteNumber}}</span></a></div>'
+                '<div style="width: 100%; height: 500px; text-align: center;"><a  ng-click="row.entity.upvoteNumber = row.entity.upvoteNumber+ 1;grid.appScope.upvote(row.entity.username) "><i class="fas fa-thumbs-up"></i><span>{{row.entity.upvoteNumber}}</span></a></div>'
         }],
         onRegisterApi: function (gridApi) {
             $scope.gridApi = gridApi;
