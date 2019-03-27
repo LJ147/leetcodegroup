@@ -77,14 +77,14 @@ function CheckDayInfoCtrl($scope, $http, $state, $filter) {
         }, {
             name: '用户名',
             displayName: '用户名',
-            cellTemplate: '<div style="width: 100%; height: 500px; text-align: center;"><a href="row.entity.address"> {{row.entity.username}}</a></div>',
+            cellTemplate: '<div style="width: 100%; height: 500px; text-align: center;"><a href={{row.entity.address}}> {{row.entity.username}}</a></div>',
             width: '20%',
             enableSorting: false,
             enableColumnMenu: false
         }, {
             name: '头像',
             displayName: '头像',
-            cellTemplate: '<div style="width: 100%; height: 500px; text-align: center;"><a href="row.entity.address"><img width="50px" src= {{row.entity.avatar}} style="border-radius: 50%"\n' +
+            cellTemplate: '<div style="width: 100%; height: 500px; text-align: center;"><a href={{row.entity.address}}><img width="50px" src= {{row.entity.avatar}} style="border-radius: 50%"\n' +
                 '                                                        alt="user avatar"></a></div>',
             width: '20%',
             enableSorting: false,
