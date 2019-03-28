@@ -2,6 +2,7 @@ package org.whu.cs.bean;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -23,14 +24,14 @@ public class CheckDayInfo {
     // 个人主页
     private String website;
     // 提交通过率
-    private Integer acceptanceRate;
+    private Double acceptanceRate;
     // 查卡天数 格式 '2019-03-01'
     private String date;
     private Integer checkDaysInTheLastYear;
     // 是否打卡 0：已打卡 1： 未打卡
     private Integer checked;
     private String updateTime;
-    private Integer solvedProblemNumberOfToday;
+    private Integer solvedProblemNumberOfToday = 0;
     private Integer submissionOfToday;
     private Integer submissionCount;
     // 刷过的题
@@ -80,11 +81,11 @@ public class CheckDayInfo {
         this.website = website;
     }
 
-    public Integer getAcceptanceRate() {
+    public Double getAcceptanceRate() {
         return acceptanceRate;
     }
 
-    public void setAcceptanceRate(Integer acceptanceRate) {
+    public void setAcceptanceRate(Double acceptanceRate) {
         this.acceptanceRate = acceptanceRate;
     }
 

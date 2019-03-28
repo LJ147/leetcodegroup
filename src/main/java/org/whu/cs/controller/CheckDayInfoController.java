@@ -10,6 +10,7 @@ import org.whu.cs.bean.CheckDayInfo;
 import org.whu.cs.service.CheckDayInfoService;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -82,4 +83,57 @@ public class CheckDayInfoController {
         return summary;
     }
 
+    @PostMapping(value = "/submission")
+    @ResponseBody
+    public void updateSubmission(CheckDayInfo checkDayInfo) {
+        String username = checkDayInfo.getUsername();
+        String date = checkDayInfo.getDate();
+        if (username != null && date != null) {
+            CheckDayInfo res = checkDayInfoService.findByUsernameAndDate(username, date);
+
+            // 已经有记录，更新数据
+            if (res != null) {
+                res.setChecked(checkDayInfo.getChecked());
+                checkDayInfoService.save(res);
+                res.setUpdateTime(res.getUpdateTime());
+
+
+            } else {             // 没有记录，新建记录
+
+
+                checkDayInfoService.save(checkDayInfo);
+            }
+
+
+        }
+    }
+
+    @PostMapping(value = "/userInfo")
+    @ResponseBody
+    public void updateUserInfo(CheckDayInfo checkDayInfo) throws ParseException {
+        String username = checkDayInfo.getUsername();
+        String date = checkDayInfo.getDate();
+        if (username != null && date != null) {
+            CheckDayInfo res = checkDayInfoService.findByUsernameAndDate(username, date);
+
+            // 已经有记录，更新数据
+            if (res != null) {
+                res.setUpdateTime(res.getUpdateTime());
+                res.setAcceptanceRate(checkDayInfo.getAcceptanceRate());
+                res.setSolvedQuestion(checkDayInfo.getSolvedQuestion());
+                res.setAcceptedSubmission(checkDayInfo.getAcceptedSubmission());
+                res.setAddress(checkDayInfo.getAddress());
+                res.setAvatar(checkDayInfo.getAvatar());
+
+                if (res.getChecked() == 0) {
+                    Integer solvedQuestionOfYesterday = checkDayInfoService.getSolvedProblemOfYesterday(username, date);
+                    res.setSolvedProblemNumberOfToday(checkDayInfo.getSolvedQuestion() - solvedQuestionOfYesterday);
+                } else {
+                    res.setSolvedProblemNumberOfToday(0);
+                }
+                checkDayInfoService.save(res);
+
+            }
+        }
+    }
 }

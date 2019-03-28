@@ -107,8 +107,10 @@
                 <th>序号</th>
                 <th>用户名</th>
                 <th>头像</th>
+                <th>查卡</th>
+
+                <th>今日刷题</th>
                 <th>刷题数</th>
-                <th>打卡天数</th>
                 <th>点赞</th>
                 </tr>
                 </thead>
@@ -116,7 +118,7 @@
 
                 </tr>
                 </tfoot>
-                <tbody ng-repeat="user in users " ng-switch={{user.checked}} >
+                <tbody ng-repeat="user in users |orderBy :solvedProblemNumberOfToday " ng-switch={{user.checked}} >
                 <tr>
 
                     <td>{{$index + 1}}</td>
@@ -124,8 +126,6 @@
                     <td><a href="{{user.address}}"><img width="50px" src={{user.avatar}} style="border-radius: 50%"
                                                         alt="user avatar"></a>
                     </td>
-                    <td>{{user.solvedQuestion}}</td>
-
 
                     <td ng-switch-when="0">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">已打卡</div>
@@ -133,6 +133,11 @@
                     <td ng-switch-when="1">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">缺卡</div>
                     </td>
+
+                    <td>{{user.solvedProblemNumberOfToday}}</td>
+
+                    <td>{{user.solvedQuestion}}</td>
+
 
                     <!--<td>-->
                         <!--<div ng-class="{HeartAnimation:true, 'like_active':liked }"-->
