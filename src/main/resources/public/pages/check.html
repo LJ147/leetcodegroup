@@ -94,7 +94,21 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">数据更新时间：{{users[0].updateTime}}</h6>
+            <div class="row">
+                <div class="col-sm-6" ><h6 class="m-0 font-weight-bold text-primary">数据更新时间：{{users[0].updateTime}}</h6>
+                </div>
+
+                <div class="col-sm-6 -pull-right">
+                    <h6 ><a href="https://m.do.co/c/ebded9eff93c"> 推广：注册 DigitalOcean 领
+                        $10 代金券</a></h6>
+                </div>
+
+
+            </div>
+
+
+
+
         </div>
 
 
@@ -118,7 +132,7 @@
 
                 </tr>
                 </tfoot>
-                <tbody ng-repeat="user in users |orderBy :solvedProblemNumberOfToday " ng-switch={{user.checked}} >
+                <tbody ng-repeat="user in users |orderBy :solvedProblemNumberOfToday " ng-switch={{user.checked}}>
                 <tr>
 
                     <td>{{$index + 1}}</td>
@@ -140,19 +154,19 @@
 
 
                     <!--<td>-->
-                        <!--<div ng-class="{HeartAnimation:true, 'like_active':liked }"-->
-                             <!--ng-init="upvoteNumber = user.upvoteNumber; liked = false"-->
-                             <!--ng-click="liked = !liked; upvote(user.username, upvoteNumber,$index)"></div>-->
+                    <!--<div ng-class="{HeartAnimation:true, 'like_active':liked }"-->
+                    <!--ng-init="upvoteNumber = user.upvoteNumber; liked = false"-->
+                    <!--ng-click="liked = !liked; upvote(user.username, upvoteNumber,$index)"></div>-->
 
 
-                        <!--{{upvoteNumber}}-->
+                    <!--{{upvoteNumber}}-->
                     <!--</td>-->
 
                     <td ng-init="upvoteNumber = user.upvoteNumber"
-                    ng-click="upvoteNumber = upvoteNumber+ 1;upvote(user.username, upvoteNumber,$index) "
+                        ng-click="upvoteNumber = upvoteNumber+ 1;upvote(user.username, upvoteNumber,$index) "
                     >
-                    <i class="fas fa-thumbs-up"></i>
-                    <span id="upvote_{{$index}}">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span id="upvote_{{$index}}">
                     {{upvoteNumber}}
                     </span>
                     </td>
