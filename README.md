@@ -47,8 +47,17 @@ Scrapy 1.5.0
 
 爬虫部分代码：[spider_leetcode](https://github.com/LJ147/spider_leetcode)
 
+# 四、部署
+
+1.ssh 免密登录：将本地的 ~/.ssh/id_rsa.pub 添加到服务器的 ~/.ssh/authorized_keys 中（cat file >> ~/.ssh/authorized_keys）
+
+2.执行部署脚本： 在项目根目录下执行： `bash deploy.sh` 。
+
+
+
 # 公众号：一时博客
 
 ![欢迎关注公众号：一时博客](http://upload-images.jianshu.io/upload_images/2208282-7b270098f5d1e577.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 
