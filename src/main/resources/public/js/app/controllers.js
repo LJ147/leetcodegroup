@@ -43,6 +43,17 @@ function CheckCtrl($scope, $http, $state,$filter) {
 
         }
     })
+    // 点赞
+    $scope.upvote = function (toMemberId) {
+
+        $http({
+            url: '/api/upvote/webVote',
+            method: 'post',
+            params: {'fromMemberId': -1, 'toMemberId': toMemberId}
+        }).success(function (response) {
+            console.log("upvote: " + toMemberId);
+        })
+    };
 
 
 }
