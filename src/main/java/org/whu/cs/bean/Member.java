@@ -26,44 +26,29 @@ public class Member {
     private int status;
 
     // 记录创建时间
-    private Date gmt_create;
+    private String gmt_create;
 
     // 记录修改时间
-    private Date gmt_modified;
+    private String gmt_modified;
 
     /**
      * Gets gmt create.
      *
      * @return the gmt create
      */
-    public Date getGmt_create() {
+    public String getGmt_create() {
         return gmt_create;
     }
 
-    /**
-     * Sets gmt create.
-     *
-     * @param gmt_create the gmt create
-     */
-    public void setGmt_create(Date gmt_create) {
+    public void setGmt_create(String gmt_create) {
         this.gmt_create = gmt_create;
     }
 
-    /**
-     * Gets gmt modified.
-     *
-     * @return the gmt modified
-     */
-    public Date getGmt_modified() {
+    public String getGmt_modified() {
         return gmt_modified;
     }
 
-    /**
-     * Sets gmt modified.
-     *
-     * @param gmt_modified the gmt modified
-     */
-    public void setGmt_modified(Date gmt_modified) {
+    public void setGmt_modified(String gmt_modified) {
         this.gmt_modified = gmt_modified;
     }
 

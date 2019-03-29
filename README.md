@@ -49,7 +49,9 @@ Scrapy 1.5.0
 
 # 四、部署
 
-1.ssh 免密登录：将本地的 ~/.ssh/id_rsa.pub 添加到服务器的 ~/.ssh/authorized_keys 中（cat file >> ~/.ssh/authorized_keys）
+> 仅适用于 Linux / macOS
+
+1.配置ssh 免密登录：将本地的 ~/.ssh/id_rsa.pub 添加到服务器的 ~/.ssh/authorized_keys 中（cat file >> ~/.ssh/authorized_keys）
 
 2.执行部署脚本： 在项目根目录下执行： `bash deploy.sh` 。
 

@@ -94,8 +94,9 @@ public class CheckDayInfoController {
             // 已经有记录，更新数据
             if (res != null) {
                 res.setChecked(checkDayInfo.getChecked());
-                checkDayInfoService.save(res);
                 res.setUpdateTime(res.getUpdateTime());
+
+//                checkDayInfoService.save(res);
 
 
             } else {             // 没有记录，新建记录
@@ -118,7 +119,7 @@ public class CheckDayInfoController {
 
             // 已经有记录，更新数据
             if (res != null) {
-                res.setUpdateTime(res.getUpdateTime());
+                res.setUpdateTime(checkDayInfo.getUpdateTime());
                 res.setAcceptanceRate(checkDayInfo.getAcceptanceRate());
                 res.setSolvedQuestion(checkDayInfo.getSolvedQuestion());
                 res.setAcceptedSubmission(checkDayInfo.getAcceptedSubmission());

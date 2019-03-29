@@ -9,6 +9,8 @@ import org.whu.cs.service.MemberService;
 import org.whu.cs.bean.Member;
 import org.whu.cs.service.ValidService;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -32,7 +34,8 @@ public class MemberController {
         if (!validService.isValidLeetcodeUrl(url)) {
             message = url + " 格式有误";
         } else if (!memberService.existsByAddress(url)) {
-            member.setGmt_create(new Date());
+            Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            member.setGmt_create(formatter.format(new Date()));
             memberService.save(member);
             message = url + " 已提交";
         } else {
