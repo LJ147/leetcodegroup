@@ -95,18 +95,16 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row">
-                <div class="col-sm-6" ><h6 class="m-0 font-weight-bold text-primary">数据更新时间：{{users[0].updateTime}}</h6>
+                <div class="col-sm-6"><h6 class="m-0 font-weight-bold text-primary">数据更新时间：{{users[0].updateTime}}</h6>
                 </div>
 
                 <div class="col-sm-6 -pull-right">
-                    <h6 ><a href="https://m.do.co/c/ebded9eff93c"> 推广：注册 DigitalOcean 领
+                    <h6><a href="https://m.do.co/c/ebded9eff93c"> 推广：注册 DigitalOcean 领
                         $10 代金券</a></h6>
                 </div>
 
 
             </div>
-
-
 
 
         </div>
@@ -162,10 +160,11 @@
                     <!--{{upvoteNumber}}-->
                     <!--</td>-->
 
-                    <td ng-init="upvoteNumber = user.upvoteNumber"
-                        ng-click="upvoteNumber = upvoteNumber+ 1;upvote(user.username, upvoteNumber,$index) "
-                    >
-                        <i class="fas fa-thumbs-up"></i>
+                    <td ng-init="upvoteNumber = user.upvoteNumber ;user.isDisabled = false">
+
+                        <button ng-disabled="{{isDisabled}}" class="fas fa-thumbs-up"
+                                ng-click="user.isDisabled ||upvote(user.username, upvoteNumber,$index);user.isDisabled ||( upvoteNumber = upvoteNumber+ 1); user.isDisabled = true;
+                                "></button>
                         <span id="upvote_{{$index}}">
                     {{upvoteNumber}}
                     </span>
