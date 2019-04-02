@@ -96,7 +96,7 @@ public class CheckDayInfoController {
                 res.setChecked(checkDayInfo.getChecked());
                 res.setUpdateTime(res.getUpdateTime());
 
-//                checkDayInfoService.save(res);
+                checkDayInfoService.save(res);
 
 
             } else {             // 没有记录，新建记录
