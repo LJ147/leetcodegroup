@@ -13,7 +13,7 @@ function LoginCtrl($scope, $http, $state) {
 
 }
 
-function CheckCtrl($scope, $http, $state,$filter) {
+function CheckCtrl($scope, $http, $state, $filter) {
     $scope.summaryInfo = null;
     $scope.users = null;
 
@@ -42,7 +42,7 @@ function CheckCtrl($scope, $http, $state,$filter) {
             $scope.summaryInfo = response;
 
         }
-    })
+    });
     // 点赞
     $scope.upvote = function (toMemberId) {
 
@@ -222,6 +222,100 @@ function WechatAppCtrl($scope, $http, $state) {
 
 }
 
+function HomeCtrl($scope, $http, $state, $filter) {
+
+
+    $scope.summaryInfo = null;
+    $scope.users = null;
+
+    $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
+
+
+    $(document).ready(function () {
+        $('#dataTable').DataTable({
+            "ajax": {
+                "url": "checkDayInfo/day",
+                "data": {date: $scope.today},
+                "type": "GET",
+                "dataSrc": ""
+            },
+            "order": [[3, "desc"], [4, 'desc'], [5, 'desc']],
+            "deferRender": true,
+            "columns": [
+                {
+                    "data": "username",
+                    "title": "用户名",
+                    "width": "100px",
+                    render: function (data, type, row, meta) {
+
+                        return '<a href="' + row.address + '">' + data + '</a>';
+                    }
+
+                },
+                {
+                    "data": "avatar",
+                    "title": "头像",
+                    "width": "100px",
+
+                    render: function (data, type, row, meta) {
+
+                        return '<a href=' + row.address + '><img width="50px" src=' + data + ' style="border-radius:50% "' + 'alt="user avatar"></a>';
+                    }
+
+                }, {
+                    "data": "checked",
+                    "title": "打卡",
+                    "width": "100px",
+
+                    render: function (data, type, row, meta) {
+
+                        var node = "";
+                        if (data == "0") {
+                            node += "<div class=\"text-xs font-weight-bold text-success text-uppercase mb-1\">已打卡</div>"
+                        } else {
+                            node += " <div class=\"text-xs font-weight-bold text-warning text-uppercase mb-1\">缺卡</div>"
+                        }
+                        return node;
+                    }
+                },
+                {
+                    "data": "solvedProblemNumberOfToday",
+                    "title": "今日刷题",
+                    "width": "100px",
+
+
+                },
+                {
+                    "data": "solvedQuestion",
+                    "title": "刷题数",
+                    "width": "100px",
+                },
+                {
+                    "data": "upvoteNumber",
+                    "title": "点赞",
+                    "width": "100px",
+                },
+
+
+            ]
+        })
+    });
+
+    $http({
+        url: 'checkDayInfo/summary',
+        method: 'get',
+        params: {date: $scope.today}
+    }).success(function (response) {
+
+        if (response != null) {
+            $scope.summaryInfo = response;
+
+        }
+    });
+
+
+}
+
 
 function SubmitCtrl($scope, $http, $state) {
     $scope.message = null;
@@ -239,3 +333,4 @@ function SubmitCtrl($scope, $http, $state) {
 function AddUpvoteCount(index) {
     $("#upvote_" + index).text(upvoteNumber + 1);
 }
+

@@ -30,21 +30,23 @@
     <link href="https://fonts.loli.net/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
     <link href="js/angularJS/ui-grid.css" rel="stylesheet"/>
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-96527706-3"></script>-->
-    <!--<script>-->
-    <!--window.dataLayer = window.dataLayer || [];-->
-    <!--function gtag(){dataLayer.push(arguments);}-->
-    <!--gtag('js', new Date());-->
 
-    <!--gtag('config', 'UA-96527706-3');-->
-    <!--</script>-->
+
+    <!-- Google Analytics -->
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'UA-96527706-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src='js/analytics.js'></script>
+    <!-- End Google Analytics -->
 
     <style>
         .HeartAnimation {
@@ -190,7 +192,7 @@
 
         <!-- Nav Item - 公告 -->
         <li class="nav-item">
-            <a class="nav-link" ui-sref="updateRecord">
+            <a class="nav-link" href="https://hellogod.cn/2019-04-03/lc-group-dev-update/">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>公告</span></a>
         </li>
@@ -212,8 +214,8 @@
         <!-- Nav Item - Github -->
         <li class="nav-item">
             <a class="nav-link" href="https://github.com/LJ147/leetcodegroup">
-                <i class="fab fa-github"></i>
-                <span>Github</span></a>
+                <img  src="https://img.shields.io/github/stars/LJ147/leetcodegroup.svg?style=social"></img>
+                 </a>
         </li>
 
 
@@ -526,6 +528,9 @@
 <script src="js/app/controllers.js"></script>
 <script src="js/sb-admin-2.min.js"></script>
 
+
+<script src="vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 </body>
 

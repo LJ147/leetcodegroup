@@ -159,6 +159,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider,
 
         }
     })
+        .state('home', {
+            url: '/home',
+            views: {
+                '': {
+                    templateUrl: 'pages/home.html',
+                    controller: HomeCtrl
+                }
+
+            }
+        })
 
 });
 app.filter('Enabled', function () {

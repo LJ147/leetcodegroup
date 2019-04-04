@@ -74,4 +74,14 @@ public class CheckDayInfoService {
         return 0;
 
     }
+
+    public String updateTime(String date) {
+        List<CheckDayInfo> checkDayInfos = checkDayInfoRepository.findAllByDate(date);
+        if (checkDayInfos == null || checkDayInfos.size() == 0) {
+            return "";
+        } else {
+            return checkDayInfos.get(0).getUpdateTime();
+        }
+
+    }
 }

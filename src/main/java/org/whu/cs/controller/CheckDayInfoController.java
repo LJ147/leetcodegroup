@@ -76,9 +76,12 @@ public class CheckDayInfoController {
         NumberFormat format = NumberFormat.getPercentInstance();
         format.setMaximumFractionDigits(1);//设置保留几位小数
 
+        String updateTime = checkDayInfoService.updateTime(date);
+
         summary.put("totalUserCount", totalUserCount);
         summary.put("checkedCount", checkedCount);
         summary.put("checkRatio", format.format(ratio));
+        summary.put("updateTime",updateTime);
 
         return summary;
     }
