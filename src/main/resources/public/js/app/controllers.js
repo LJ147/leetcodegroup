@@ -235,11 +235,11 @@ function HomeCtrl($scope, $http, $state, $filter) {
         $('#dataTable').DataTable({
             "ajax": {
                 "url": "checkDayInfo/day",
-                "data": {date: $scope.today},
+                "data": {date: '2019-04-04'},
                 "type": "GET",
                 "dataSrc": ""
             },
-            "order": [[3, "desc"], [4, 'desc'], [5, 'desc']],
+            "order": [[3, 'desc'], [4, 'desc']],
             "deferRender": true,
             "columns": [
                 {
@@ -247,28 +247,21 @@ function HomeCtrl($scope, $http, $state, $filter) {
                     "title": "用户名",
                     "width": "100px",
                     render: function (data, type, row, meta) {
-
                         return '<a href="' + row.address + '">' + data + '</a>';
                     }
-
                 },
                 {
                     "data": "avatar",
                     "title": "头像",
                     "width": "100px",
-
                     render: function (data, type, row, meta) {
-
                         return '<a href=' + row.address + '><img width="50px" src=' + data + ' style="border-radius:50% "' + 'alt="user avatar"></a>';
                     }
-
                 }, {
                     "data": "checked",
                     "title": "打卡",
                     "width": "100px",
-
                     render: function (data, type, row, meta) {
-
                         var node = "";
                         if (data == "0") {
                             node += "<div class=\"text-xs font-weight-bold text-success text-uppercase mb-1\">已打卡</div>"
@@ -282,8 +275,6 @@ function HomeCtrl($scope, $http, $state, $filter) {
                     "data": "solvedProblemNumberOfToday",
                     "title": "今日刷题",
                     "width": "100px",
-
-
                 },
                 {
                     "data": "solvedQuestion",
@@ -294,9 +285,8 @@ function HomeCtrl($scope, $http, $state, $filter) {
                     "data": "upvoteNumber",
                     "title": "点赞",
                     "width": "100px",
-                },
 
-
+                }
             ]
         })
     });
@@ -333,4 +323,270 @@ function SubmitCtrl($scope, $http, $state) {
 function AddUpvoteCount(index) {
     $("#upvote_" + index).text(upvoteNumber + 1);
 }
+
+
+function CheckRatioCtrl1($scope, $http, $state, $filter) {
+
+    $scope.days = null;
+    $scope.ratioList = null;
+
+    $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
+
+    $http({
+        url: 'checkDayInfo/checkRatioList',
+        method: 'get',
+        params: {date: $scope.today}
+    }).success(function (response) {
+
+        if (response != null) {
+            $scope.days = response.days;
+            $scope.ratioList = response.ratioList;
+
+
+        }
+    });
+
+// Set new default font family and font color to mimic Bootstrap's default styling
+    Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#858796';
+
+    function number_format(number, decimals, dec_point, thousands_sep) {
+        // *     example: number_format(1234.56, 2, ',', ' ');
+        // *     return: '1 234,56'
+        number = (number + '').replace(',', '').replace(' ', '');
+        var n = !isFinite(+number) ? 0 : +number,
+            prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+            sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+            dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+            s = '',
+            toFixedFix = function (n, prec) {
+                var k = Math.pow(10, prec);
+                return '' + Math.round(n * k) / k;
+            };
+        // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+        s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+        if (s[0].length > 3) {
+            s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+        }
+        if ((s[1] || '').length < prec) {
+            s[1] = s[1] || '';
+            s[1] += new Array(prec - s[1].length + 1).join('0');
+        }
+        return s.join(dec);
+    }
+
+// Area Chart Example
+    var ctx = document.getElementById("myAreaChart");
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: $scope.days,
+            datasets: [{
+                label: "Earnings",
+                lineTension: 0.3,
+                backgroundColor: "rgba(78, 115, 223, 0.05)",
+                borderColor: "rgba(78, 115, 223, 1)",
+                pointRadius: 3,
+                pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointBorderColor: "rgba(78, 115, 223, 1)",
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                pointHitRadius: 10,
+                pointBorderWidth: 2,
+                data: $scope.ratioList,
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 25,
+                    top: 25,
+                    bottom: 0
+                }
+            },
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'date'
+                    },
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 7
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        maxTicksLimit: 5,
+                        padding: 10,
+                        // Include a dollar sign in the ticks
+                        callback: function (value, index, values) {
+                            return '$' + number_format(value);
+                        }
+                    },
+                    gridLines: {
+                        color: "rgb(234, 236, 244)",
+                        zeroLineColor: "rgb(234, 236, 244)",
+                        drawBorder: false,
+                        borderDash: [2],
+                        zeroLineBorderDash: [2]
+                    }
+                }],
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                titleMarginBottom: 10,
+                titleFontColor: '#6e707e',
+                titleFontSize: 14,
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                intersect: false,
+                mode: 'index',
+                caretPadding: 10,
+                callbacks: {
+                    label: function (tooltipItem, chart) {
+                        var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                        return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                    }
+                }
+            }
+        }
+    });
+
+}
+
+
+function CheckRatioCtrl($scope, $http, $state, $filter) {
+
+    $scope.days = null;
+    $scope.ratioList = null;
+    $scope.checkInfoCount = null;
+
+    $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
+
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+
+
+    var domCount = document.getElementById("checkInfoCount");
+    var checkInfoCount = echarts.init(domCount);
+
+    $http({
+        url: 'checkDayInfo/checkRatioList',
+        method: 'get',
+        params: {date: $scope.today}
+    }).success(function (response) {
+
+        if (response != null) {
+            $scope.days = response.days;
+            $scope.ratioList = response.ratioList;
+            $scope.checkInfoCount = response.checkInfoCount;
+
+
+            // 打卡率曲线
+            var app = {};
+            option = null;
+            option = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    data: $scope.days
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: $scope.ratioList,
+                    name: '打卡率',
+                    type: 'line'
+                }]
+            };
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+
+
+            // 小组人数曲线
+            var checkInfoCountApp = {};
+            optionOfCheckInfoCount = null;
+            // checkInfoCountApp.title = '坐标轴刻度与标签对齐';
+
+            optionOfCheckInfoCount = {
+                color: ['#3398DB'],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: $scope.days,
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '小组人数',
+                        type: 'bar',
+                        barWidth: '60%',
+                        data: $scope.checkInfoCount
+                    }
+                ]
+            };
+            if (optionOfCheckInfoCount && typeof optionOfCheckInfoCount === "object") {
+                checkInfoCount.setOption(optionOfCheckInfoCount, true);
+            }
+
+
+        }
+    });
+
+
+}
+
 

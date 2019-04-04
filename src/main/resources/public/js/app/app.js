@@ -158,8 +158,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider,
             }
 
         }
-    })
-        .state('home', {
+    }).state('home', {
             url: '/home',
             views: {
                 '': {
@@ -168,7 +167,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider,
                 }
 
             }
-        })
+        }).state('checkRatio', {
+        url: '/checkRatio',
+        views: {
+            '': {
+                templateUrl: 'pages/checkRatio.html',
+                controller: CheckRatioCtrl
+            }
+
+        }
+    })
 
 });
 app.filter('Enabled', function () {

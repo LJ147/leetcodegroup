@@ -12,6 +12,7 @@ import java.net.Inet4Address;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -84,4 +85,39 @@ public class CheckDayInfoService {
         }
 
     }
+    // 获取两个日期之间的所有日期（yyyy-MM-dd）
+    public List<String> getBetweenDates(String head, String tail) throws ParseException {
+
+        DateFormat formatter;
+
+        formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date begin = formatter.parse(head);
+        Date end = formatter.parse(tail);
+
+        List<String> result = new ArrayList<>();
+        Calendar tempStart = Calendar.getInstance();
+        tempStart.setTime(begin);
+
+        while (begin.getTime() <= end.getTime()) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String yyyyMMdd = sdf.format(tempStart.getTime());
+            result.add(yyyyMMdd);
+            tempStart.add(Calendar.DAY_OF_YEAR, 1);
+            begin = tempStart.getTime();
+        }
+        return result;
+    }
+
+    // 打卡率
+    public Double checkRatio(String date) {
+        Integer totalUserCount = getTotalUserCount(date);
+        Integer checkedCount = getCheckedCount(date);
+        if (totalUserCount == 0) {
+            return 0.0;
+        }
+        return (double) checkedCount / totalUserCount;
+    }
+
+
+
 }

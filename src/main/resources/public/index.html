@@ -134,8 +134,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">排行榜</h6>
-                    <a class="collapse-item" ui-sref="checkDay">每日打卡</a>
-                    <!--<a class="collapse-item" ui-sref="cards">打卡总榜单</a>-->
+<!--                    <a class="collapse-item" ui-sref="checkDay">每日打卡</a>-->
+                    <a class="collapse-item" ui-sref="home">综合榜单</a>
                     <!--<a class="collapse-item" ui-sref="cards">连续打卡榜单</a>-->
                 </div>
             </div>
@@ -144,7 +144,7 @@
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapseUtilities"
                aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>小组数据</span>
@@ -152,8 +152,8 @@
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">敬请期待</h6>
-                    <!--<a class="collapse-item" href="utilities-color.html">小组打卡率</a>-->
+                    <h6 class="collapse-header">数据一览</h6>
+                    <a class="collapse-item" ui-sref="checkRatio" >小组打卡率</a>
                     <!--<a class="collapse-item" href="utilities-border.html">小组明星</a>-->
                     <!--<a class="collapse-item" href="utilities-animation.html">Animations</a>-->
                     <!--<a class="collapse-item" href="utilities-other.html">Other</a>-->
@@ -531,6 +531,11 @@
 
 <script src="vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+
+<script src="vendor/chart.js/Chart.min.js"></script>
+
+<script type="text/javascript" src="https://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
 
 </body>
 
