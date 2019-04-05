@@ -235,7 +235,7 @@ function HomeCtrl($scope, $http, $state, $filter) {
         $('#dataTable').DataTable({
             "ajax": {
                 "url": "checkDayInfo/day",
-                "data": {date: '2019-04-04'},
+                "data": {date: $scope.today},
                 "type": "GET",
                 "dataSrc": ""
             },
