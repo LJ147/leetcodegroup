@@ -98,12 +98,6 @@
                 <div class="col-sm-6"><h6 class="m-0 font-weight-bold text-primary">数据更新时间：{{users[0].updateTime}}</h6>
                 </div>
 
-                <div class="col-sm-6 -pull-right">
-                    <h6><a href="https://m.do.co/c/ebded9eff93c"> 推广：注册 DigitalOcean 领
-                        $10 代金券</a></h6>
-                </div>
-
-
             </div>
 
 
@@ -115,14 +109,14 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
 
-                    <th>序号</th>
-                    <th>用户名</th>
-                    <th>头像</th>
-                    <th>查卡</th>
+                    <th style="text-align: center">序号</th>
+                    <th style="text-align: center">用户名</th>
+                    <th style="text-align: center">头像</th>
+                    <th style="text-align: center">查卡</th>
 
-                    <th>今日刷题</th>
-                    <th>刷题数</th>
-                    <th>点赞</th>
+                    <th style="text-align: center">今日刷题</th>
+                    <th style="text-align: center">刷题数</th>
+                    <th style="text-align: center">点赞</th>
                     </tr>
                     </thead>
 
@@ -132,22 +126,25 @@
                     <tbody ng-repeat="user in users |orderBy :solvedProblemNumberOfToday " ng-switch={{user.checked}}>
                     <tr>
 
-                        <td>{{$index + 1}}</td>
-                        <td><a href="{{user.address}}">{{user.username}} </a></td>
-                        <td><a href="{{user.address}}"><img width="50px" src={{user.avatar}} style="border-radius: 50%"
-                                                            alt="user avatar"></a>
+                        <td style="text-align: center">{{$index + 1}}</td>
+                        <td style="text-align: center"><a href="{{user.address}}">{{user.username}} </a></td>
+                        <td><a href="{{user.address}}" ng-if="$index ==0"><div style=" width:60px; height: 60px; text-align: center; padding-top: 5px; margin: 0 auto; background: linear-gradient(#feea88,#d7a807); border-radius: 55px"><img width="50px" src={{user.avatar}} style="margin: 0 auto;border-radius: 50%" alt="user avatar"></div></a>
+                            <a href="{{user.address}}" ng-if="$index ==1"><div style=" width:60px; height: 60px; text-align: center; padding-top: 5px; margin: 0 auto; background: linear-gradient(white,#ababab); border-radius: 55px"><img width="50px" src={{user.avatar}} style="margin: 0 auto;border-radius: 50%" alt="user avatar"></div></a>
+                            <a href="{{user.address}}" ng-if="$index ==2"><div style=" width:60px; height: 60px; text-align: center; padding-top: 5px; margin: 0 auto; background: linear-gradient(#facfa3,#d77c44); border-radius: 55px"><img width="50px" src={{user.avatar}} style="margin: 0 auto;border-radius: 50%" alt="user avatar"></div></a>
+                            <a href="{{user.address}}" ng-if="$index >2"><div style="text-align: center; margin: 0 auto;"> <img width="50px" src={{user.avatar}} style="margin: 0 auto;border-radius: 50%" alt="user avatar"></div></a>
+
                         </td>
 
-                        <td ng-switch-when="0">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">已打卡</div>
+                        <td ng-switch-when="0" style="text-align: center">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" >已打卡</div>
                         </td>
-                        <td ng-switch-when="1">
+                        <td ng-switch-when="1" style="text-align: center">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">缺卡</div>
                         </td>
 
-                        <td>{{user.solvedProblemNumberOfToday}}</td>
+                        <td style="text-align: center">{{user.solvedProblemNumberOfToday}}</td>
 
-                        <td>{{user.solvedQuestion}}</td>
+                        <td style="text-align: center">{{user.solvedQuestion}}</td>
 
 
                         <!--<td>-->
@@ -159,7 +156,7 @@
                         <!--{{upvoteNumber}}-->
                         <!--</td>-->
 
-                        <td ng-init="upvoteNumber = user.upvoteNumber ;user.isDisabled = false">
+                        <td ng-init="upvoteNumber = user.upvoteNumber ;user.isDisabled = false" style="text-align: center">
 
                             <button ng-disabled="{{isDisabled}}" class="fas fa-thumbs-up"
                                     ng-click="user.isDisabled ||upvote(user.username, upvoteNumber,$index);user.isDisabled ||( upvoteNumber = upvoteNumber+ 1); user.isDisabled = true;
