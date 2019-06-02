@@ -17,7 +17,7 @@ function CheckCtrl($scope, $http, $state, $filter) {
     $scope.summaryInfo = null;
     $scope.users = null;
 
-    $scope.today = $filter('date')(new Date(), 'yyyy-MM-dd');
+    $scope.today = $filter('date')("2019-05-22", 'yyyy-MM-dd');
 
     $http({
         url: 'checkDayInfo/day',

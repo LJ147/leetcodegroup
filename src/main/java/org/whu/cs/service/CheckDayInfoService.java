@@ -118,6 +118,11 @@ public class CheckDayInfoService {
         return (double) checkedCount / totalUserCount;
     }
 
+    //根据做题数量排序
+    public List<CheckDayInfo> getOwnQuestion(String date){
+        return checkDayInfoRepository.getOwnQuestion(date);
+    }
+
 
 
 }

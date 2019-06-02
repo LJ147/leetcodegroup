@@ -18,6 +18,9 @@ public interface CheckDayInfoRepository extends JpaRepository<CheckDayInfo, Long
     @Query(value = "select * from CheckDayInfo info where info.date = ?1 ORDER by checked ASC, solvedProblemNumberOfToday DESC ,solvedQuestion DESC ", nativeQuery = true)
     List<CheckDayInfo> findByDate(String date);
 
+    @Query(value = "select * from CheckDayInfo info where info.date = ?1 ORDER by checked ASC ,solvedQuestion DESC ", nativeQuery = true)
+    List<CheckDayInfo> getOwnQuestion(String date);
+
     Integer countAllByDate(String date);
 
     Integer countAllByDateAndChecked(String date, int checked);

@@ -187,4 +187,17 @@ public class CheckDayInfoController {
         return result;
     }
 
+
+    @ApiOperation(value = "小程序：根据打卡数量排序", notes = "小程序：当天打卡数量排序")
+    @ApiImplicitParam(paramType = "query", name = "date", value = "当天日期，格式yyyy-MM-dd", required = true, dataType = "String")
+    @GetMapping(value = "/ownQuestion")
+    @ResponseBody
+    public List<CheckDayInfo> getOwnQuestion(@RequestParam(value = "date") String date){
+        if (date == null) {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+            date = df.format(new Date());
+        }
+        return checkDayInfoService.getOwnQuestion(date);
+    }
+
 }
